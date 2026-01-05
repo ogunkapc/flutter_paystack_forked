@@ -68,9 +68,7 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
     _currentIndex = _getCurrentTab();
     _showTabs = widget.method == CheckoutMethod.selectable ? true : false;
     _tabController = new TabController(
-        vsync: this,
-        length: _methodWidgets.length,
-        initialIndex: _currentIndex!);
+        vsync: this, length: _methodWidgets.length, initialIndex: _currentIndex!);
     _tabController!.addListener(_indexChange);
     _animationController = new AnimationController(
       duration: const Duration(milliseconds: 500),
@@ -146,8 +144,8 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
             onTap: () => FocusScope.of(context).unfocus(),
             behavior: HitTestBehavior.translucent,
             child: new Container(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 10.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 child: Column(
                   children: <Widget>[
                     _showProcessingError()
@@ -188,7 +186,7 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
               Text(
                 'Pay',
                 style: TextStyle(
-                    fontSize: 14.0, color: context.textTheme().headline1?.color),
+                    fontSize: 14.0, color: context.textTheme().displayLarge?.color),
               ),
               SizedBox(
                 width: 5.0,
@@ -197,7 +195,7 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
                   child: Text(Utils.formatAmount(_charge.amount),
                       style: TextStyle(
                           fontSize: 15.0,
-                          color: context.textTheme().headline6?.color,
+                          color: context.textTheme().titleLarge?.color,
                           fontWeight: FontWeight.bold)))
             ],
           )
@@ -242,16 +240,15 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
       duration: const Duration(milliseconds: 300),
       curve: Curves.fastOutSlowIn,
       child: new Container(
-        color: context.colorScheme().background.withOpacity(0.5),
+        color: context.colorScheme().surface.withOpacity(0.5),
         height: _tabHeight,
         alignment: Alignment.center,
         child: new TabBar(
           controller: _tabController,
           isScrollable: true,
-          unselectedLabelColor: context.colorScheme().onBackground,
+          unselectedLabelColor: context.colorScheme().onSurface,
           labelColor: accentColor,
-          labelStyle:
-              new TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+          labelStyle: new TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
           indicator: new ShapeDecoration(
             shape: RoundedRectangleBorder(
                   borderRadius: tabBorderRadius,
@@ -421,7 +418,7 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
           if (_response!.card != null) {
             _response!.card!.nullifyNumber();
           }
-         Navigator.of(context).pop(_response);
+          Navigator.of(context).pop(_response);
         },
       );
 
@@ -434,9 +431,8 @@ class _CheckoutWidgetState extends BaseState<CheckoutWidget>
     CheckoutResponse? response = _response;
     if (response == null) {
       response = CheckoutResponse.defaults();
-      response.method = _tabController!.index == 0
-          ? CheckoutMethod.card
-          : CheckoutMethod.bank;
+      response.method =
+          _tabController!.index == 0 ? CheckoutMethod.card : CheckoutMethod.bank;
     }
     if (response.card != null) {
       response.card!.nullifyNumber();

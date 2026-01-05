@@ -45,14 +45,13 @@ class _BirthdayWidgetState extends BaseState<BirthdayWidget> {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                color: context.textTheme().headline6?.color,
+                color: context.textTheme().titleLarge?.color,
                 fontSize: 15.0,
               ),
             ),
             _heightBox,
             _pickedDate == null
-                ? new WhiteButton(
-                    onPressed: _selectBirthday, text: 'Pick birthday')
+                ? new WhiteButton(onPressed: _selectBirthday, text: 'Pick birthday')
                 : new WhiteButton(
                     onPressed: _selectBirthday,
                     flat: true,
@@ -73,8 +72,7 @@ class _BirthdayWidgetState extends BaseState<BirthdayWidget> {
                 ? new Container()
                 : new AccentButton(onPressed: _onAuthorize, text: 'Authorize'),
             new Container(
-              padding:
-                  new EdgeInsets.only(top: _pickedDate == null ? 15.0 : 20.0),
+              padding: new EdgeInsets.only(top: _pickedDate == null ? 15.0 : 20.0),
               child: new WhiteButton(
                 onPressed: onCancelPress,
                 text: 'Cancel',
@@ -148,8 +146,7 @@ class _BirthdayWidgetState extends BaseState<BirthdayWidget> {
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.all(const Radius.circular(3.0)),
-          border:
-              const Border(top: side, right: side, bottom: side, left: side)),
+          border: const Border(top: side, right: side, bottom: side, left: side)),
       child: new Text(
         text,
         textAlign: TextAlign.center,

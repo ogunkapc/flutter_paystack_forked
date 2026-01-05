@@ -45,15 +45,14 @@ class _SuccessfulWidgetState extends State<SuccessfulWidget>
 
     _opacityController = new AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
-    _opacity =
-        new CurvedAnimation(parent: _opacityController, curve: Curves.linear)
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _opacityController.reverse();
-            } else if (status == AnimationStatus.dismissed) {
-              _opacityController.forward();
-            }
-          });
+    _opacity = new CurvedAnimation(parent: _opacityController, curve: Curves.linear)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _opacityController.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          _opacityController.forward();
+        }
+      });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => _startCountdown());
   }
@@ -86,7 +85,7 @@ class _SuccessfulWidgetState extends State<SuccessfulWidget>
             Text(
               'Payment Successful',
               style: TextStyle(
-                color: context.textTheme().headline6?.color,
+                color: context.textTheme().titleLarge?.color,
                 fontWeight: FontWeight.w500,
                 fontSize: 16.0,
               ),
@@ -98,7 +97,7 @@ class _SuccessfulWidgetState extends State<SuccessfulWidget>
                 ? new Container()
                 : new Text('You paid ${Utils.formatAmount(widget.amount)}',
                     style: TextStyle(
-                      color: context.textTheme().headline6?.color,
+                      color: context.textTheme().titleLarge?.color,
                       fontWeight: FontWeight.normal,
                       fontSize: 14.0,
                     )),

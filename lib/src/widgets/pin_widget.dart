@@ -38,13 +38,12 @@ class _PinWidgetState extends BaseState<PinWidget> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: context.textTheme().headline6?.color,
+                  color: context.textTheme().titleLarge?.color,
                   fontSize: 15.0,
                 ),
               ),
               heightBox,
-              new PinField(
-                  onSaved: (String pin) => Navigator.of(context).pop(pin)),
+              new PinField(onSaved: (String pin) => Navigator.of(context).pop(pin)),
               heightBox,
               new WhiteButton(
                 onPressed: onCancelPress,

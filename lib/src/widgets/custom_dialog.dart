@@ -33,7 +33,7 @@ class CustomAlertDialog extends StatelessWidget {
       children.add(new Padding(
         padding: titlePadding!,
         child: new DefaultTextStyle(
-          style: context.textTheme().headline6!,
+          style: context.textTheme().titleLarge!,
           child: new Semantics(child: title, namesRoute: true),
         ),
       ));
@@ -43,7 +43,7 @@ class CustomAlertDialog extends StatelessWidget {
       child: new Padding(
         padding: contentPadding,
         child: new DefaultTextStyle(
-          style: context.textTheme().subtitle1!,
+          style: context.textTheme().titleMedium!,
           child: content,
         ),
       ),
@@ -164,8 +164,7 @@ class CustomDialog extends StatelessWidget {
           child: new ConstrainedBox(
             constraints: new BoxConstraints(
                 minWidth: expanded
-                    ? math.min(
-                        (MediaQuery.of(context).size.width - 40.0), 332.0)
+                    ? math.min((MediaQuery.of(context).size.width - 40.0), 332.0)
                     : 280.0),
             child: new Material(
               elevation: 50.0,

@@ -81,22 +81,22 @@ class _HomePageState extends State<HomePage> {
                       child: const Text('Initalize transaction from:'),
                     ),
                     new Expanded(
-                      child: new Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            new RadioListTile<int>(
-                              value: 0,
-                              groupValue: _radioValue,
-                              onChanged: _handleRadioValueChanged,
-                              title: const Text('Local'),
-                            ),
-                            new RadioListTile<int>(
-                              value: 1,
-                              groupValue: _radioValue,
-                              onChanged: _handleRadioValueChanged,
-                              title: const Text('Server'),
-                            ),
-                          ]),
+                      child: RadioGroup<int>(
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChanged,
+                        child: new Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              new RadioListTile<int>(
+                                value: 0,
+                                title: const Text('Local'),
+                              ),
+                              new RadioListTile<int>(
+                                value: 1,
+                                title: const Text('Server'),
+                              ),
+                            ]),
+                      ),
                     )
                   ],
                 ),
@@ -150,13 +150,12 @@ class _HomePageState extends State<HomePage> {
                 _verticalSizeBox,
                 Theme(
                   data: Theme.of(context).copyWith(
-                    colorScheme: Theme.of(context)
-                        .colorScheme
-                        .copyWith(secondary: green),
+                    colorScheme:
+                        Theme.of(context).colorScheme.copyWith(secondary: green),
                     primaryColorLight: Colors.white,
                     primaryColorDark: navyBlue,
                     textTheme: Theme.of(context).textTheme.copyWith(
-                          bodyText2: TextStyle(
+                          bodyMedium: TextStyle(
                             color: lightBlue,
                           ),
                         ),
@@ -182,8 +181,7 @@ class _HomePageState extends State<HomePage> {
                                   height: 40.0,
                                 ),
                                 new Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     new Flexible(
@@ -195,8 +193,7 @@ class _HomePageState extends State<HomePage> {
                                             isDense: true,
                                             hintText: 'Checkout method',
                                           ),
-                                          child: new DropdownButton<
-                                              CheckoutMethod>(
+                                          child: new DropdownButton<CheckoutMethod>(
                                             value: _method,
                                             isDense: true,
                                             onChanged: (CheckoutMethod? value) {
@@ -207,8 +204,7 @@ class _HomePageState extends State<HomePage> {
                                             items: banks.map((String value) {
                                               return new DropdownMenuItem<
                                                   CheckoutMethod>(
-                                                value:
-                                                    _parseStringToMethod(value),
+                                                value: _parseStringToMethod(value),
                                                 child: new Text(value),
                                               );
                                             }).toList(),
@@ -434,19 +430,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   _updateStatus(String? reference, String message) {
-    _showMessage('Reference: $reference \n\ Response: $message',
-        const Duration(seconds: 7));
+    _showMessage(
+        'Reference: $reference \n\ Response: $message', const Duration(seconds: 7));
   }
 
-  _showMessage(String message,
-      [Duration duration = const Duration(seconds: 4)]) {
+  _showMessage(String message, [Duration duration = const Duration(seconds: 4)]) {
     ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
       content: new Text(message),
       duration: duration,
       action: new SnackBarAction(
           label: 'CLOSE',
-          onPressed: () =>
-              ScaffoldMessenger.of(context).removeCurrentSnackBar()),
+          onPressed: () => ScaffoldMessenger.of(context).removeCurrentSnackBar()),
     ));
   }
 
